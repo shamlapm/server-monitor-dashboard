@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}')
+CPU=$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}')
 MEM=$(free -m | awk 'NR==2{printf "%.2f", $3*100/$2 }')
 
 cat <<EOF > /var/www/html/index.html
@@ -11,7 +11,7 @@ cat <<EOF > /var/www/html/index.html
 </head>
 <body>
 <h1>Server Monitoring Dashboard</h1>
-<p><strong>CPU Usage:</strong> $CPU %</p>
+<p><strong>CPU Usage:</strong> $CPU</p>
 <p><strong>Memory Usage:</strong> $MEM %</p>
 </body>
 </html>
