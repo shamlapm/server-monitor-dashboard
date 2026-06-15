@@ -2,6 +2,7 @@
 
 CPU=$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}')
 MEM=$(free -m | awk 'NR==2{printf "%.2f", $3*100/$2 }')
+disk=$(df -h / | awk 'NR==2 {print $5}')
 
 cat <<EOF > /var/www/html/index.html
 <html>
@@ -13,6 +14,7 @@ cat <<EOF > /var/www/html/index.html
 <h1>Server Monitoring Dashboard</h1>
 <p><strong>CPU Usage:</strong> $CPU</p>
 <p><strong>Memory Usage:</strong> $MEM %</p>
+<p><strong>Disk Usage:</strong> $disk</p>
 </body>
 </html>
 EOF
