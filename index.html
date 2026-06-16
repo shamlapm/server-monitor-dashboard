@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Server Monitoring</title>
+    <title>Server Monitoring Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Server Monitoring Dashboard</h1>
 
+<h1>Server Monitoring Dashboard</h1>
+
+<div class="card">
     <h2>CPU Usage</h2>
-    <p id="cpu"></p>
+    <p>CPU_PLACEHOLDER</p>
+</div>
 
+<div class="card">
     <h2>Memory Usage</h2>
-    <p id="memory"></p>
+    <p>MEM_PLACEHOLDER</p>
+</div>
 
-    <script>
-        setInterval(() => {
-            fetch('/cpu').then(res => res.text()).then(data => {
-                document.getElementById('cpu').innerText = data;
-            });
+<div class="card">
+    <h2>Disk Usage</h2>
+    <p>DISK_PLACEHOLDER</p>
+</div>
 
-            fetch('/memory').then(res => res.text()).then(data => {
-                document.getElementById('memory').innerText = data;
-            });
-        }, 2000);
-    </script>
+<div class="card">
+    <h2>Nginx Status</h2>
+    <p>NGINX_PLACEHOLDER</p>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
